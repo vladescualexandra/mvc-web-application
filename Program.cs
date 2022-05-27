@@ -19,6 +19,11 @@ namespace mvc_web_application
 
             var app = builder.Build();
             app.UseStaticFiles();
+            // !!!! new/updated code {
+            app.MapControllerRoute("pagination",
+                "Stories/Page{productPage}",
+                new { Controller = "Home", action = "Index" });
+            //}
             app.MapDefaultControllerRoute();
 
             SeedData.EnsurePopulated(app);

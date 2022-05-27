@@ -1,0 +1,8 @@
+﻿@model StoriesListViewModel
+
+@foreach (var s in Model?.Stories ?? Enumerable.Empty<Story>()) {
+	<div>
+		<h3>@s.Title</h3>
+		<h4>@s.Tickets</h4>
+	</div>
+}

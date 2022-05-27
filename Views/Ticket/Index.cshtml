@@ -1,0 +1,11 @@
+﻿@model TicketsListViewModel
+
+@foreach (var t in Model?.Tickets ?? Enumerable.Empty<Ticket>()) {
+	<div>
+		<h3>@t.Summary</h3>
+		<h4>@t.Description</h4>
+		<h4>@t.Asignee</h4>
+		<h4>@t.Reporter</h4>
+		<h4>@t.IsCompleted</h4>
+	</div>
+}
