@@ -18,8 +18,14 @@ namespace mvc_web_application.Infrastructure
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext? ViewContext { get; set; }
-        public PagingInfo? PageModel { get; set; }
+        public PagingInfoViewModel? PageModel { get; set; }
         public string? PageAction { get; set; }
+
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; } = String.Empty;
+        public string PageClassNormal { get; set; } = String.Empty;
+        public string PageClassSelected { get; set; } = String.Empty;
+
         public override void Process(TagHelperContext context,
         TagHelperOutput output)
         {
@@ -30,8 +36,14 @@ namespace mvc_web_application.Infrastructure
                 for (int i = 1; i <= PageModel.TotalPages; i++)
                 {
                     TagBuilder tag = new TagBuilder("a");
-                    tag.Attributes["href"] = urlHelper.Action(PageAction,
-                    new { productPage = i });
+                    tag.Attributes["href"] = urlHelper.Action(PageAction, new { productPage = i });
+
+                    if (PageClassesEnabled)
+                    {
+                        tag.AddCssClass(PageClass);
+                        tag.AddCssClass(i == PageModel.CurrentPage
+                        ? PageClassSelected : PageClassNormal);
+                    }
 
                     tag.InnerHtml.Append(i.ToString());
                     result.InnerHtml.AppendHtml(tag);

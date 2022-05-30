@@ -13,8 +13,7 @@ namespace mvc_web_application.Controllers
         }
 
         
-
-        public int PageSize = 2;
+        public int PageSize = 6;
         public ViewResult Index(int storiesPage = 1)
         {
             var viewModel = new StoriesListViewModel
@@ -23,7 +22,7 @@ namespace mvc_web_application.Controllers
                     .OrderBy(p => p.StoryID)
                     .Skip((storiesPage - 1) * PageSize)
                     .Take(PageSize),
-                    PagingInfo = new PagingInfo
+                    PagingInfo = new PagingInfoViewModel
                     {
                         CurrentPage = storiesPage,
                         ItemsPerPage = PageSize,

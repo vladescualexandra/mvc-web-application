@@ -22,12 +22,12 @@ namespace mvc_web_application.Data
         
             Story story01 = new Story
             {
-                Title = "Title Stoy 01"
+                Title = "Title Story 01"
             };
 
             Story story02 = new Story
             {
-                Title = "Title Stoy 02"
+                Title = "Title Story 02"
             };
 
             

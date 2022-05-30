@@ -10,7 +10,8 @@ namespace mvc_web_application
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<ApplicationDbContext>(opts => {
+            builder.Services.AddDbContext<ApplicationDbContext>(opts =>
+            {
                 opts.UseSqlServer(
                 builder.Configuration["ConnectionStrings:DefaultConnection"]);
             });
@@ -19,11 +20,15 @@ namespace mvc_web_application
 
             var app = builder.Build();
             app.UseStaticFiles();
-            // !!!! new/updated code {
             app.MapControllerRoute("pagination",
-                "Stories/Page{productPage}",
+                "Stories/Page{storiesPage}",
                 new { Controller = "Home", action = "Index" });
-            //}
+
+            app.MapControllerRoute("ticketsPerStory",
+                      "Tickets/StoryID={storyId}",
+                new { Controller = "Tickets", action = "Index" }
+                );
+
             app.MapDefaultControllerRoute();
 
             SeedData.EnsurePopulated(app);
