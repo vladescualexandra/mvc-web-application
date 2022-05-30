@@ -6,5 +6,11 @@ namespace mvc_web_application.Data
     {
         IQueryable<Story> Stories { get; }
         IQueryable<Ticket> Tickets { get; }
+
+        Task SaveStoryAsync(Story story);
+        Task SaveTicketAsync(Ticket ticket);
+
+        Task<Story> DeleteStoryAsync(int storyID);
+        Task<Ticket> DeleteTicketAsync(int ticketID);
     }
 }

@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using mvc_web_application.Data;
-using mvc_web_application.Models;
 
 namespace mvc_web_application
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {
