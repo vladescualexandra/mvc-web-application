@@ -87,6 +87,8 @@ namespace mvc_web_application.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditTicket(Ticket ticket)
         {
+            TempData["message"] = $"{ticket.TicketID}";
+
             if (ModelState.IsValid)
             {
                 if (ticket.StoryID == 0)
@@ -96,7 +98,7 @@ namespace mvc_web_application.Controllers
 
                 await repository.SaveTicketAsync(ticket);
                 TempData["message"] = $"{ticket.Summary} has been saved";
-                return RedirectToAction("ViewTickets", ticket.StoryID);
+                return RedirectToAction("Index");
             }
             else
             {

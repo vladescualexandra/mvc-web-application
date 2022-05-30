@@ -19,13 +19,13 @@
 			<h6>Is completed? @t.IsCompleted</h6>
 
 			<a asp-action="EditTicket" class="btn btn-sm btn-warning"
-                asp-route-storyId="@t.StoryID">
+                asp-route-ticketId="@t.TicketID">
                     Edit
                 </a>
                 <form 
                     asp-action="DeleteTicket" 
                     method="post" style="display: inline">
-                    <input type="hidden" name="StoryId" value="@t.StoryID" />
+                    <input type="hidden" name="ticketId" value="@t.TicketID" />
                     <button type="submit" class="btn btn-danger btn-sm">
                         Delete
                     </button>
