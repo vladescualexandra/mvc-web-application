@@ -4,7 +4,7 @@ using mvc_web_application.ViewModels;
 
 namespace mvc_web_application.Controllers
 {
-   
+	[AutoValidateAntiforgeryToken]
     public class HomeController : Controller
     {
         private ITrackingRepository repository;
