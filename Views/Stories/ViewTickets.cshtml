@@ -18,10 +18,15 @@
 			<h6>Reporter: @t.Reporter</h6>
 			<h6>Is completed? @t.IsCompleted</h6>
 
-			<a asp-action="EditTicket" class="btn btn-sm btn-warning"
+            @if(User.IsInRole("manager")) {
+                <a asp-action="EditTicket" class="btn btn-sm btn-warning"
                 asp-route-ticketId="@t.TicketID">
                     Edit
                 </a>
+            }
+
+            @if(User.IsInRole("admin"))
+            {
                 <form 
                     asp-action="DeleteTicket" 
                     method="post" style="display: inline">
@@ -30,6 +35,8 @@
                         Delete
                     </button>
                 </form>
+            }
+ 
 		</div>
 	</div>
 }
