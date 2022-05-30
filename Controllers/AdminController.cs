@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using mvc_web_application.Data;
 using mvc_web_application.Models;
 
 namespace mvc_web_application.Controllers
 {
+	[Authorize]
 	public class AdminController : Controller
 	{
 		private ITrackingRepository repository;
