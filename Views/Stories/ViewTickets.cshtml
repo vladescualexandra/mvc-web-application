@@ -5,8 +5,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<a asp-action="CreateTicket" class="btn btn-primary mb-3">Add Ticket</a>
-
+@if(User.IsInRole("manager")) {
+    <a asp-action="CreateTicket" class="btn btn-primary mb-3">Add Ticket</a>
+}
 
 @foreach (var t in Model)
 {

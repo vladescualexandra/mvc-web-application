@@ -17,9 +17,6 @@ namespace mvc_web_application.Data
                 context.Database.Migrate();
             }
 
-            
-
-        
             Story story01 = new Story
             {
                 Title = "Title Story 01"

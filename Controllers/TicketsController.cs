@@ -15,17 +15,7 @@ namespace mvc_web_application.Controllers
             this.repository = repository;
         }
 
-        //public ViewResult Index(int storyId = 1)
-        //{
-        //    var viewModel = new TicketsListViewModel
-        //    {
-        //        Tickets = repository.Tickets
-        //            .OrderBy(p => p.TicketID)
-        //            .Where(t => t.StoryID == storyId)
-        //    };
 
-        //    return View(viewModel);
-        //}
 
         public IActionResult CreateTicket()
         {

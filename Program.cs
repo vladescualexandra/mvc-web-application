@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using mvc_web_application.Areas.Identity.Data;
 using mvc_web_application.Data;
+using System.Net;
 
 namespace mvc_web_application
 {
@@ -20,8 +21,8 @@ namespace mvc_web_application
             {
                 options.Password.RequiredLength = 8;
 
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.AllowedForNewUsers = true;
             })
 
@@ -35,6 +36,15 @@ namespace mvc_web_application
             builder.Services.AddScoped<ITrackingRepository, EFTrackingRepository>();
 
             var app = builder.Build();
+
+            app.UseHttpsRedirection();
+
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
+
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -43,17 +53,10 @@ namespace mvc_web_application
                             "Stories/Page{storiesPage}",
                             new { Controller = "Stories", action = "Index" });
 
-            app.MapControllerRoute("ticketsPerStory",
-                      "Tickets/StoryID={storyId}",
-                new { Controller = "Tickets", action = "Index" }
-                );
-
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
 
-            app.UseHsts();
-            app.UseHttpsRedirection();
-            
+
             SeedData.EnsurePopulated(app);
             Task.Run(async () =>
             {
