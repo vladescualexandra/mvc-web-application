@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Ticket>
+
+@{
+    ViewBag.Title = "Tickets";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<a asp-action="CreateTicket" class="btn btn-primary mb-3">Add Ticket</a>
+
+
+@foreach (var t in Enumerable.Empty<Ticket>())
+{
+	<div class="card card-outline-primary m-1 p-1">
+		<div class="bg-faded p-1">
+			<h3>@t.Summary</h3>
+			<h4>@t.Description</h4>
+			<h4>@t.Asignee</h4>
+			<h4>@t.Reporter</h4>
+			<h4>@t.IsCompleted</h4>
+		</div>
+	</div>
+}

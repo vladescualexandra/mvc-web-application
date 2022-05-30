@@ -12,8 +12,8 @@ using mvc_web_application.Data;
 namespace mvc_web_application.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220530152857_Initial")]
-    partial class Initial
+    [Migration("20220530175640_Identity")]
+    partial class Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

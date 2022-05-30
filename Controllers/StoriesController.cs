@@ -54,5 +54,12 @@ namespace mvc_web_application.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
+  //      public IActionResult ViewTickets(int storyId) 
+		//{
+  //          var tickets = repository.Tickets.Where(t => t.StoryID == storyId);
+  //          return View(tickets);
+		//}
     }
 }
