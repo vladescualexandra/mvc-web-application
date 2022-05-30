@@ -4,8 +4,8 @@
     {
         public int StoryID { get; set; }
 
-        public string Title { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        public string? Title { get; set; }
+        public List<Ticket>? Tickets { get; set; }
 
     }
 }
