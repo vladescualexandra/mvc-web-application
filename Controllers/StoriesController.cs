@@ -9,6 +9,9 @@ namespace mvc_web_application.Controllers
     public class StoriesController : Controller
     {
         private ITrackingRepository repository;
+
+        private static int currentStoryId;
+
         public StoriesController(ITrackingRepository repo)
         {
             repository = repo;
@@ -58,8 +61,40 @@ namespace mvc_web_application.Controllers
 
         public IActionResult ViewTickets(int storyId)
         {
+            currentStoryId = storyId;
             var tickets = repository.Tickets.Where(t => t.StoryID == storyId);
             return View(tickets);
+        }
+
+        public IActionResult CreateTicket()
+        {
+            return View("EditTicket", new Ticket());
+        }
+
+        public IActionResult EditTicket(int ticketId)
+        {
+            var ticket = repository.Tickets.FirstOrDefault(t => t.TicketID == ticketId);
+            return View(ticket);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTicket(Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                if (ticket.StoryID == 0)
+                {
+                    ticket.StoryID = currentStoryId;
+                }
+
+                await repository.SaveTicketAsync(ticket);
+                TempData["message"] = $"{ticket.Summary} has been saved";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(ticket);
+            }
         }
     }
 }
