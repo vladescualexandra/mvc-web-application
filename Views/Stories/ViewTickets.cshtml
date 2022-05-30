@@ -8,7 +8,7 @@
 <a asp-action="CreateTicket" class="btn btn-primary mb-3">Add Ticket</a>
 
 
-@foreach (var t in Enumerable.Empty<Ticket>())
+@foreach (var t in Model)
 {
 	<div class="card card-outline-primary m-1 p-1">
 		<div class="bg-faded p-1">
@@ -17,6 +17,19 @@
 			<h4>@t.Asignee</h4>
 			<h4>@t.Reporter</h4>
 			<h4>@t.IsCompleted</h4>
+
+			<a asp-action="EditTicket" class="btn btn-sm btn-warning"
+                asp-route-storyId="@t.StoryID">
+                    Edit
+                </a>
+                <form 
+                    asp-action="DeleteTicket" 
+                    method="post" style="display: inline">
+                    <input type="hidden" name="StoryId" value="@t.StoryID" />
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </form>
 		</div>
 	</div>
 }

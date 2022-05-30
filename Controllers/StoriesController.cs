@@ -56,10 +56,10 @@ namespace mvc_web_application.Controllers
         }
 
 
-  //      public IActionResult ViewTickets(int storyId) 
-		//{
-  //          var tickets = repository.Tickets.Where(t => t.StoryID == storyId);
-  //          return View(tickets);
-		//}
+        public IActionResult ViewTickets(int storyId)
+        {
+            var tickets = repository.Tickets.Where(t => t.StoryID == storyId);
+            return View(tickets);
+        }
     }
 }
