@@ -6,6 +6,7 @@ using mvc_web_application.Models;
 namespace mvc_web_application.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class StoriesController : Controller
     {
         private ITrackingRepository repository;
@@ -34,6 +35,7 @@ namespace mvc_web_application.Controllers
 
         [HttpPost]
         [Authorize(Roles = "manager")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Story story)
         {
             if (ModelState.IsValid)
@@ -50,6 +52,7 @@ namespace mvc_web_application.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int storyId)
         {
             Story deletedStory = await repository.DeleteStoryAsync(storyId);
@@ -81,6 +84,7 @@ namespace mvc_web_application.Controllers
 
         [HttpPost]
         [Authorize(Roles = "manager")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditTicket(Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -102,6 +106,7 @@ namespace mvc_web_application.Controllers
 
         [HttpDelete]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteTicket(int ticketId)
         {
             Ticket deletedTicket = await repository.DeleteTicketAsync(ticketId);

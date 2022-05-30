@@ -53,11 +53,7 @@ namespace mvc_web_application
 
             app.UseHsts();
             app.UseHttpsRedirection();
-            builder.Services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
-
+            
             SeedData.EnsurePopulated(app);
             Task.Run(async () =>
             {

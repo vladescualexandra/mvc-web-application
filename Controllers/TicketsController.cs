@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using mvc_web_application.Data;
 using mvc_web_application.Models;
-using mvc_web_application.ViewModels;
 
 namespace mvc_web_application.Controllers
 {
+    [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class TicketsController : Controller
     {
         private ITrackingRepository repository;

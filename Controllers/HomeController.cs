@@ -4,6 +4,7 @@ using mvc_web_application.ViewModels;
 
 namespace mvc_web_application.Controllers
 {
+   
     public class HomeController : Controller
     {
         private ITrackingRepository repository;
