@@ -21,12 +21,16 @@
             <td class="text-right">@item.StoryID</td>
             <td>@item.Title</td>
             <td class="text-center">
+                <a asp-action="ViewTickets" class="btn btn-sm btn-primary"
+                asp-route-storyId="@item.StoryID">
+                    View Tickets
+                </a>
                 <a asp-action="Edit" class="btn btn-sm btn-warning"
-                asp-route-productId="@item.StoryID">
+                asp-route-storyId="@item.StoryID">
                     Edit
                 </a>
                 <form 
-                    asp-action="Delete" 
+                    asp-action="DeleteStory" 
                     method="post" style="display: inline">
                     <input type="hidden" name="StoryId" value="@item.StoryID" />
                     <button type="submit" class="btn btn-danger btn-sm">

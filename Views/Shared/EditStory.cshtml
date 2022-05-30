@@ -1,0 +1,25 @@
+﻿@model mvc_web_application.Models.Story
+
+@{
+	ViewBag.Title = "Edit Story";
+	Layout = "_AdminLayout";
+}
+
+<h1>Edit Story</h1>
+<hr />
+
+<form asp-action="Edit">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<input type="hidden" asp-for="StoryID" />
+	<div class="form-group">
+		<label asp-for="Title" class="control-label"></label>
+		<input asp-for="Title" class="form-control" />
+		<span asp-validation-for="Title" class="text-danger"></span>
+	</div>
+
+	<hr />
+	<div>
+		<input type="submit" value="Save" class="btn btn-primary" />
+		<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+	</div>
+</form>

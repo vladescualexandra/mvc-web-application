@@ -27,7 +27,6 @@ namespace mvc_web_application
 
                             .AddRoleManager<RoleManager<IdentityRole>>()
                             .AddDefaultUI()
-                            // TODO
                             .AddEntityFrameworkStores<ApplicationDbContext>()
                             .AddDefaultTokenProviders();
 
@@ -40,11 +39,10 @@ namespace mvc_web_application
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseAuthorization();
 
             app.MapControllerRoute("pagination",
                             "Stories/Page{storiesPage}",
-                            new { Controller = "Home", action = "Index" });
+                            new { Controller = "Stories", action = "Index" });
 
             app.MapControllerRoute("ticketsPerStory",
                       "Tickets/StoryID={storyId}",

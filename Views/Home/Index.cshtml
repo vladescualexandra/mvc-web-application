@@ -1,11 +1,13 @@
-﻿@model StoriesListViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@using mvc_web_application.Areas.Identity.Data
 
-@foreach (var s in Model?.Stories ?? Enumerable.Empty<Story>())
+@inject SignInManager<CustomUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
 {
-    <partial name="Story" model="s" />
+	Context.Response.Redirect("/Stories/Page1");
 }
-
-<div page-model="@Model?.PagingInfo" page-action="Index" page-classes-enabled="true"
-    page-class="btn" page-class-normal="btn-outline-dark"
-    page-class-selected="btn-primary" class="btn-group pull-right m-1">
-</div>
+else
+{
+	<a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+}

@@ -12,25 +12,9 @@ namespace mvc_web_application.Controllers
             this.repository = repository;
         }
 
-        
-        public int PageSize = 6;
-        public ViewResult Index(int storiesPage = 1)
+        public ViewResult Index()
         {
-            var viewModel = new StoriesListViewModel
-            {
-                Stories = repository.Stories
-                    .OrderBy(p => p.StoryID)
-                    .Skip((storiesPage - 1) * PageSize)
-                    .Take(PageSize),
-                    PagingInfo = new PagingInfoViewModel
-                    {
-                        CurrentPage = storiesPage,
-                        ItemsPerPage = PageSize,
-                        TotalItems = repository.Stories.Count()
-                    }
-            };
-
-            return View(viewModel);
+            return View();
         }
 
     }
