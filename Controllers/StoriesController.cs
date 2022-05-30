@@ -33,6 +33,7 @@ namespace mvc_web_application.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> Edit(Story story)
         {
             if (ModelState.IsValid)
@@ -48,6 +49,7 @@ namespace mvc_web_application.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int storyId)
         {
             Story deletedStory = await repository.DeleteStoryAsync(storyId);
@@ -78,6 +80,7 @@ namespace mvc_web_application.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> EditTicket(Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -89,12 +92,24 @@ namespace mvc_web_application.Controllers
 
                 await repository.SaveTicketAsync(ticket);
                 TempData["message"] = $"{ticket.Summary} has been saved";
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewTickets", ticket.StoryID);
             }
             else
             {
                 return View(ticket);
             }
+        }
+
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteTicket(int ticketId)
+        {
+            Ticket deletedTicket = await repository.DeleteTicketAsync(ticketId);
+            if (deletedTicket != null)
+            {
+                TempData["message"] = $"{deletedTicket.Summary} was deleted";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

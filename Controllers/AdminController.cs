@@ -2,6 +2,7 @@
 
 namespace mvc_web_application.Controllers
 {
+	[AutoValidateAntiforgeryToken]
 	public class AdminController : Controller
 	{
 		public IActionResult Index()

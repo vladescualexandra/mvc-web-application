@@ -36,7 +36,6 @@ namespace mvc_web_application
 
             var app = builder.Build();
             app.UseStaticFiles();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -53,8 +52,11 @@ namespace mvc_web_application
             app.MapRazorPages();
 
             app.UseHsts();
-
             app.UseHttpsRedirection();
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+            });
 
             SeedData.EnsurePopulated(app);
             Task.Run(async () =>

@@ -82,11 +82,11 @@ namespace mvc_web_application.Data
                 await context.SaveChangesAsync();
             }
 
-			return dbEntry;
+            return dbEntry;
         }
 
-		public async Task<Ticket> DeleteTicketAsync(int ticketID)
-		{
+        public async Task<Ticket> DeleteTicketAsync(int ticketID)
+        {
             Ticket? dbEntry = context.Tickets
                     .FirstOrDefault(s => s.TicketID == ticketID);
 
@@ -98,5 +98,5 @@ namespace mvc_web_application.Data
 
             return dbEntry;
         }
-	}
+    }
 }
